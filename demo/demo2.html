@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>聊天框的实现</title>
+	<style type="text/css">
+    *{margin:0; padding:0}
+	#phone{
+		height: 526px;
+		width: 317px;
+		position: absolute;
+		left: 40%;
+		margin-top: 100px;
+	}
+	#text{
+		position: absolute;
+		border: 1px solid ;
+		height: 405px;
+		width:300px;
+		left: 40.35%;
+		top: 143px;
+		z-index: 100;
+	}
+	#div1{
+		position: relative;
+		border-bottom: 1px solid ;
+		height: 350px;
+		width:300px;
+		z-index: 101;
+		overflow: auto;
+	}
+	
+	#img{
+		height: 30px;
+		width: 30px;
+		position: absolute;
+		border:1px solid;
+		border-radius: 7px;
+		left: 2px;
+		top: 372px;
+		background: url(./img/emoj1.jpg);
+	}
+	#text1{
+		width: 200px;
+		height: 26px;
+		left: 40px;
+		top: 372px;
+		position: absolute;
+	}
+	#btn{
+		width: 45px;
+		height: 30px;
+		left: 250px;
+		top: 372px;
+		position: absolute;
+	}
+	li{
+		text-align: right;
+		list-style: none;
+		line-height:28px;
+		margin-bottom: 15px;
+		overflow: hidden;
+		position: relative;
+	}
+	.yk img{
+		position: relative;
+		float: right;
+		height: 25px;
+		width: 25px;
+		margin-left: 15px;
+	}
+	.yk p{
+		background: forestgreen; 
+		text-align: left;
+		padding: 3px 5px;
+		border-radius: 4px;/*圆角边框*/
+		color: white; 
+		float:right;
+		max-width: 182px;
+		font:14px 'Microsoft YaHei'; }
+	.senty{
+		width:0; 
+		height:0; 
+		border:solid 8px;
+		border-color: white white white forestgreen;
+		position: absolute;
+		right: 24px;
+		top: 4px;}
+	.zk img{
+		height: 25px;
+		width: 25px;
+		position: relative;
+		float: left;
+	}
+	.zk p{
+		background: dimgrey;
+		float: left;
+		text-align: left;
+		padding: 3px 4px;
+		border-radius: 4px;
+		color: white;
+        left: 32px;
+        max-width: 190px;
+        font:14px 'Microsoft YaHei';
+        position: absolute;
+        left: 40px;
+	}	
+    .sentz{
+    	width:0;
+    	height:0; 
+    	border:solid 8px;
+    	border-color: white dimgrey white white ;
+    	position: absolute;
+    	left: -16px;
+    	top: 4px;}/*snet系列是三角标*/
+	</style>
+	<script type="text/javascript">
+	function $(id){
+		return document.getElementById(id);
+	}
+	window.onload=function(){
+		var oBtn=$('btn');
+		var oText=$('text1');
+		var oImg=$('img');
+		var oDiv=$('div1');
+		var oArr = ['./img/emoj1.jpg','./img/emoj2.jpg'];		
+		oText.focus();//默认输入光标
+		var  onOff=true;//用布尔值负值判断
+		oImg.onclick=function(){
+				if (onOff) {
+						oImg.src=oArr[1];
+						onOff=false;	
+						oText.focus();
+				}else{
+					oImg.src=oArr[0];
+						onOff=true;	
+						oText.focus();
+				};
+		}
+		oBtn.onclick=function(){
+				if (oText.value=='') {
+				alert('不能发送空消息~！');
+			}else{
+				if (onOff) {
+					div1.innerHTML+='<li class="yk">'+'<img src="'+oArr[0]+'"/>'+'<p>'+oText.value+'<span class="senty"></span>'+'</p></li>'
+				}else{div1.innerHTML+='<li class="zk">'+'<img src="'+oArr[1]+'"/>'+'<p>'+'<span class="sentz"></span>'+oText.value+'</p></li>'}
+
+			}
+				oDiv.scrollTop=oDiv.scrollHeight;//滚动条保持在下方
+				oText.value='';
+				oText.focus();
+		}
+	}
+	</script>
+</head>
+<body>
+	<img  id="phone" src="./img/1.png">
+	<div id="text">	
+	<div id="div1">
+	<ul id="inHTML"></ul>
+	</div>			
+	<img id="img" src="./img/emoj1.jpg">
+	<input id="text1" type="text" name="" value="">
+	<input id="btn" type="button" name="" value="发送">
+	</div>
+	
+</body>
+</html>
