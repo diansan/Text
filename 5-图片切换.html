@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style>
+	ul{
+		padding: 0;
+		margin: 0;
+	}
+	li{
+		list-style: none;}
+	body{background: #333;}
+	#pic{
+		width: 500px;
+		height: 400px;
+		position: relative;
+		margin:0 auto;
+		background: url(./img/加载2.gif) no-repeat center;
+	}
+	#pic img{
+			width: 500px;
+			height: 400px;
+				}
+	#pic ul{
+			position: absolute;
+			top: 0;
+			right: -50px;
+				}
+	#pic li{
+		width: 40px;
+		height: 40px;
+		margin-bottom:4px;
+		background: #666;
+	}
+	#pic .active{
+		background: #FC3;}
+	#pic span,#pic p{
+		width: 500px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		color: red;
+		position: absolute;
+		}
+	#pic span{
+			top: 0;
+	}
+	#pic p{
+		bottom:0;
+		margin:0;
+	}
+	</style>
+	<script type="text/javascript">
+	window.onload=function(){
+		var oDiv=document.getElementById('pic');
+		var oImg=document.getElementsByTagName('img')[0];
+		var oSpan=document.getElementsByTagName('span')[0];
+		var oP=document.getElementsByTagName('p')[0];
+		var oUl=document.getElementsByTagName('ul')[0];
+		var aLi=document.getElementsByTagName('li');
+		var arrUrl=['./img/1.jpg','./img/2.jpg','./img/3.jpg','./img/4.jpg','./img/5.jpg','./img/6.jpg','./img/7.jpg'];
+		var arrText=['图片1','图片2','图片3','图片4','图片5','图片6','图片7'];
+		var num=0;
+		var oldLi=null;  //思路2：上一个Li为空
+
+		for (var i = 0; i < arrUrl.length; i++) {
+			oUl.innerHTML+='<li></<li>';
+		}
+		oldLi=aLi[num];//当前状态交给上一个
+		for (var i = 0; i < aLi.length; i++) {
+			aLi[i].index=i;//索引值
+			aLi[i].onclick=function(){
+				oImg.src=arrUrl[(this.index)];
+				oP.innerHTML=arrText[(this.index)];
+				oSpan.innerHTML=1+this.index+'/'+arrText.length;
+				/*图片颜色随之改变
+					全部清空，当前添加
+					清空上一个，当前添加
+				*/
+			//	for (var i = 0; i < aLi.length; i++) {
+			//		aLi[i].className='';
+			//		this.className='active';
+			//	}/*思路一*/
+			for (var i = 0; i < aLi.length; i++) {
+			oldLi.className='';
+			oldLi=this;
+			this.className='active';
+				}/*思路2*/
+			}
+		}
+
+		//初始化
+		oImg.src=arrUrl[num];
+		oSpan.innerHTML=1+num+'/'+arrUrl.length;
+		oP.innerHTML=arrText[num];
+		aLi[num].className='active';
+	}
+	</script>
+</head>
+<body>
+	<div id="pic">
+		<img src="" alt="">
+		<p>图片加载中···</p>
+		<span>数量加载中···</span>
+		<ul>
+			
+		</ul>
+	</div>
+</body>
+</html>
